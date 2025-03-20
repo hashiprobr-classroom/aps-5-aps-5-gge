@@ -47,17 +47,22 @@ public class Item {
         comprador.incrementa();
     }
 
+    public int indiceMelhorLance() {
+        int maior = 0;
+        for (int i = 1; i < ofertas.size(); i++) {
+            if (ofertas.get(maior) < ofertas.get(i)) {
+                maior = i;
+            }
+        }
+        return maior;
+    }
+
     public void imprimeMelhorLance() {
         if (ofertas.isEmpty()) {
             System.out.println("Nenhum lance foi feito ainda!");
         } else {
-            int maior = 0;
-            for (int i = 1; i < ofertas.size(); i++) {
-                if (ofertas.get(maior) < ofertas.get(i)) {
-                    maior = i;
-                }
-            }
-            System.out.println(compradores.get(maior) + " ofereceu " + ofertas.get(maior) + " (" + momentos.toString() + ")");
+            int maior = indiceMelhorLance();
+            System.out.println(compradores.get(maior) + " ofereceu " + ofertas.get(maior) + " (" + momentos.get(maior).toString() + ")");
         }
     }
 }
